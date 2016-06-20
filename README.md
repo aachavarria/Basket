@@ -12,7 +12,7 @@ npm install
 npm run typings install
 ```
 
-1:Devepment Mode
+1:Development Mode
 ```
 npm start
 ```
