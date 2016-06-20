@@ -5,12 +5,19 @@
 ## Prerequisites
 
 Node.js and NPM
+```
+npm install
+```
+```
+npm run typings install
+```
 
--npm install
--npm run typings install
+1:Devepment Mode
+```
+npm start
+```
 
-Devepment Mode
--npm start
-
-Prod Mode
--npm run prod
+2:Prod Mode
+```
+npm run prod
+```
