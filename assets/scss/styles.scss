@@ -1,5 +1,12 @@
-@import './test';
+@import 'settings';
+@import 'mixins';
 
-body{
-  background:red;
-}
+// body{
+//   background:red;
+//   @include respond-to(phone) {
+//     color: blue;
+//   }
+//   @include respond-to(phone,tablet) {
+//     background: green;
+//   }
+// }

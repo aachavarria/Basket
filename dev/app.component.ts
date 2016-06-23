@@ -1,7 +1,11 @@
 import {Component} from '@angular/core';
+import {Header} from './header.component';
 
 @Component({
     selector: 'my-app',
-    template: '<h1>My First Angular 3 App with test</h1>'
+    template: `
+      <header></header>
+    `,
+    directives:[Header]
 })
 export class AppComponent { }
