@@ -1,12 +1,3 @@
 @import 'settings';
 @import 'mixins';
-
-// body{
-//   background:red;
-//   @include respond-to(phone) {
-//     color: blue;
-//   }
-//   @include respond-to(phone,tablet) {
-//     background: green;
-//   }
-// }
+@import 'custom';
