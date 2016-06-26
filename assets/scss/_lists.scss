@@ -1,0 +1,19 @@
+.list-card {
+  min-height: 320px;
+  .mdl-card__title {
+    color: #fff;
+    min-height: 160px;
+    background:url('../assets/images/dog.png') bottom right 15% no-repeat;
+    background-color: $color-blue;
+  }
+  .mdl-list {
+      margin: 0;
+      .mdl-list__item {
+        min-height: 30px;
+        padding: 0 16px;
+      }
+  }
+  .mdl-card__actions {
+    text-align: center;
+  }
+}
