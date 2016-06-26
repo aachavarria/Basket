@@ -25,6 +25,7 @@ import {MDL} from './materialDesignUpgradeElement';
     </div>
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--12-col">
+        <div id="modalBack" *ngIf="edited==true"></div>
         <ul class="list-items mdl-list">
           <li mdl class="mdl-list__item mdl-list__item--two-line" *ngFor="let item of items; let i=index">
             <span class="mdl-list__item-primary-content">
@@ -36,7 +37,7 @@ import {MDL} from './materialDesignUpgradeElement';
             </span>
             <span class="mdl-list__item-secondary-action">
             <button class="mdl-button mdl-js-button mdl-button--icon">
-              <i (click)="onEdit(item)" class="material-icons">edit</i>
+              <i (click)="onEdit(item, i)" class="material-icons">edit</i>
             </button>
             <button class="mdl-button mdl-js-button mdl-button--icon">
               <i (click)="onDelete(item)" class="material-icons">delete</i>
@@ -46,15 +47,40 @@ import {MDL} from './materialDesignUpgradeElement';
         </ul>
       </div>
     </div>
+    <div class="modal-list" *ngIf="edited==true">
+      <h4 class="mdl-dialog__title">Edit?</h4>
+      <div class="mdl-dialog__content">
+        <p>
+          <input type="text" [ngModel]="tempName"/>
+        </p>
+      </div>
+      <div class="mdl-dialog__actions">
+        <button type="button" class="mdl-button" (click)="onSave()">Agree</button>
+        <button type="button" class="mdl-button close" (click)="onCancel()">Disagree</button>
+      </div>
+    </div>
     `,
     providers: [ShoppingListService],
     directives: [MDL]
 })
 export class ShoppingListComponent implements OnInit{
   private items:Item[];
+  public edited = false;
+  public tempName = '';
 
   constructor(private _shoppingListService: ShoppingListService){}
 
+  onEdit(item, index) {
+    console.log(item);
+    this.edited = true;
+    this.tempName = item.name;
+  };
+  onSave(){
+    this.edited = false;
+  };
+  onCancel(){
+    this.edited = false;
+  };
   ngOnInit(){
     this._shoppingListService.getItems().subscribe(items => {
       this.items = items;
