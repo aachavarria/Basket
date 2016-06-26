@@ -1,9 +1,14 @@
 import {Component, ElementRef ,AfterViewInit} from '@angular/core';
+import {HTTP_PROVIDERS} from '@angular/http';
 import {ROUTER_DIRECTIVES} from '@angular/router';
 import {Sidenav} from './sidenav.component';
 import {RightMenu} from './rightMenu.component';
 import {MDL} from './materialDesignUpgradeElement';
+<<<<<<< HEAD
 import {HTTP_PROVIDERS} from '@angular/http';
+=======
+import {ShoppingListService} from './services/shoppingList.service';
+>>>>>>> 2fe45b1e186edf5002c90427af543956924f85ec
 
 declare var componentHandler: any;
 
