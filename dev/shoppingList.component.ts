@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ShoppingListService} from './services/shoppingList.service';
 import {Item} from './services/item';
 import {MDL} from './materialDesignUpgradeElement';
+import {ItemDetail} from './itemDetail.component';
 
 @Component({
     selector: 'shopping-list',
@@ -37,7 +38,7 @@ import {MDL} from './materialDesignUpgradeElement';
             </span>
             <span class="mdl-list__item-secondary-action">
             <button class="mdl-button mdl-js-button mdl-button--icon">
-              <i (click)="onEdit(item, i)" class="material-icons">edit</i>
+              <i (click)="onEdit(item)" class="material-icons">edit</i>
             </button>
             <button class="mdl-button mdl-js-button mdl-button--icon">
               <i (click)="onDelete(item)" class="material-icons">delete</i>
@@ -59,24 +60,29 @@ import {MDL} from './materialDesignUpgradeElement';
         <button type="button" class="mdl-button close" (click)="onCancel()">Disagree</button>
       </div>
     </div>
+    <item-detail [item]='edit_item' (onSave)='onSave($event)'></item-detail>
     `,
     providers: [ShoppingListService],
-    directives: [MDL]
+    directives: [MDL,ItemDetail]
 })
 export class ShoppingListComponent implements OnInit{
   private items:Item[];
   public edited = false;
   public tempName = '';
+  public edit_item='asd';
 
   constructor(private _shoppingListService: ShoppingListService){}
 
-  onEdit(item, index) {
+  onEdit(item:any) {
     console.log(item);
-    this.edited = true;
-    this.tempName = item.name;
+    this.edit_item = item;
+    // console.log(item);
+    // this.edited = true;
+    // this.tempName = item.name;
   };
-  onSave(){
-    this.edited = false;
+  onSave(item:any){
+    console.log(item);
+    //this.edited = false;
   };
   onCancel(){
     this.edited = false;

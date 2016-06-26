@@ -39,7 +39,7 @@ export class MyLists implements AfterViewInit,OnInit{
   ngOnInit(){
     this._shoppingListService.getLists().subscribe(lists => {
       this.lists = lists;
-    });
+    },error =>console.log('done'));
   }
 
   ngAfterViewInit() {

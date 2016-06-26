@@ -28,6 +28,7 @@ declare var componentHandler: any;
         <main class="mdl-layout__content">
             <router-outlet></router-outlet>
         </main>
+        
     </div>
     `,
     directives:[Sidenav,MDL,RightMenu,ROUTER_DIRECTIVES],
