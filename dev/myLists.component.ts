@@ -1,5 +1,5 @@
 import {Component, ElementRef ,AfterViewInit, OnInit} from '@angular/core';
-import {ShoppingListService} from './services/shoppingListService';
+import {ShoppingListService} from './services/shoppingList.service';
 import {List} from './services/list';
 
 declare var componentHandler: any;
