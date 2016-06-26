@@ -1,8 +1,10 @@
 import {Component, ElementRef ,AfterViewInit} from '@angular/core';
+import {HTTP_PROVIDERS} from '@angular/http';
 import {ROUTER_DIRECTIVES} from '@angular/router';
 import {Sidenav} from './sidenav.component';
 import {RightMenu} from './rightMenu.component';
 import {MDL} from './materialDesignUpgradeElement';
+import {ShoppingListService} from './services/shoppingList.service';
 
 declare var componentHandler: any;
 
@@ -28,6 +30,7 @@ declare var componentHandler: any;
         </main>
     </div>
     `,
+    providers:[HTTP_PROVIDERS],
     directives:[Sidenav,MDL,RightMenu,ROUTER_DIRECTIVES]
 })
 export class AppComponent implements AfterViewInit  {
