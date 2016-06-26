@@ -3,6 +3,7 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
 import {Sidenav} from './sidenav.component';
 import {RightMenu} from './rightMenu.component';
 import {MDL} from './materialDesignUpgradeElement';
+import {HTTP_PROVIDERS} from '@angular/http';
 
 declare var componentHandler: any;
 
@@ -28,7 +29,8 @@ declare var componentHandler: any;
         </main>
     </div>
     `,
-    directives:[Sidenav,MDL,RightMenu,ROUTER_DIRECTIVES]
+    directives:[Sidenav,MDL,RightMenu,ROUTER_DIRECTIVES],
+    providers:[HTTP_PROVIDERS]
 })
 export class AppComponent implements AfterViewInit  {
 

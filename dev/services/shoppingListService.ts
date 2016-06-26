@@ -11,7 +11,7 @@ import {List} from './list';
 export class ShoppingListService {
      data: any;
     private items = 'dev/data/items.json';
-    private lists = 'dev/data/items.json';
+    private lists = 'dev/data/lists.json';
     private item = 'dev/data/item.json';
     constructor(private _http: Http){}
 

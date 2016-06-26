@@ -3,8 +3,9 @@
   .mdl-card__title {
     color: #fff;
     min-height: 160px;
-    background:url('../assets/images/dog.png') bottom right 15% no-repeat;
-    background-color: $color-blue;
+    background-color: $color-blue !important;
+    background-repeat: no-repeat !important;
+    background-position: right 15% bottom !important;
   }
   .mdl-list {
       margin: 0;

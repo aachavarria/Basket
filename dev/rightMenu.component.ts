@@ -17,7 +17,7 @@ declare var componentHandler: any;
             </ul>
     `
 })
-export class RightMenu implements AfterViewInit  {
+export class RightMenu implements AfterViewInit {
 
     constructor(private el:ElementRef) {}
 

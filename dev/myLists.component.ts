@@ -1,4 +1,6 @@
-import {Component, ElementRef ,AfterViewInit} from '@angular/core';
+import {Component, ElementRef ,AfterViewInit, OnInit} from '@angular/core';
+import {ShoppingListService} from './services/shoppingListService';
+import {List} from './services/list';
 
 declare var componentHandler: any;
 
@@ -6,25 +8,15 @@ declare var componentHandler: any;
     selector: 'lists',
     template: `
     <div class="mdl-grid">
-      <div class="list-card mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col">
-        <div class="mdl-card__title mdl-card--expand">
-          <h2 class="mdl-card__title-text">Name</h2>
+      <div class="list-card mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col" *ngFor="let list of lists; let i=index">
+        <div class="mdl-card__title mdl-card--expand" [ngStyle]="{'background': list.image}">
+          <h2 class="mdl-card__title-text">{{list.name}}</h2>
         </div>
         <div class="mdl-card__supporting-text">
           <ul class="mdl-list">
-            <li class="mdl-list__item">
+            <li class="mdl-list__item" *ngFor="let item of list.items; let i=index">
               <span class="mdl-list__item-primary-content">
-                Item 2
-              </span>
-            </li>
-            <li class="mdl-list__item">
-              <span class="mdl-list__item-primary-content">
-                Item 2
-              </span>
-            </li>
-            <li class="mdl-list__item">
-              <span class="mdl-list__item-primary-content">
-                Item 2
+               {{item.name}}
               </span>
             </li>
           </ul>
@@ -36,13 +28,21 @@ declare var componentHandler: any;
         </div>
       </div>
     </div>
-    `
+    `,
+    providers: [ShoppingListService]
 })
-export class MyLists implements AfterViewInit  {
+export class MyLists implements AfterViewInit,OnInit{
+  private lists:List[];
 
-    constructor(private el:ElementRef) {}
+  constructor(private _shoppingListService: ShoppingListService){}
 
-    ngAfterViewInit() {
-        //componentHandler.upgradeAllRegistered();
-    }
+  ngOnInit(){
+    this._shoppingListService.getLists().subscribe(lists => {
+      this.lists = lists;
+    });
+  }
+
+  ngAfterViewInit() {
+      //componentHandler.upgradeAllRegistered();
+  }
 }
