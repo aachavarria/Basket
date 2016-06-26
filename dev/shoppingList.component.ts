@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ShoppingListService} from './services/shoppingListService';
-import {Items} from './services/items';
+import {Item} from './services/item';
 @Component({
     selector: 'shopping-list',
     template: `
@@ -22,11 +22,11 @@ import {Items} from './services/items';
     `,
     providers: [ShoppingListService]
 })
-export class ShoppingListComponent implements OnInit{ 
-  private items:Items[];
-  
+export class ShoppingListComponent implements OnInit{
+  private items:Item[];
+
   constructor(private _shoppingListService: ShoppingListService){}
-  
+
   ngOnInit(){
     this._shoppingListService.getItems().subscribe(items => {
       this.items = items;
