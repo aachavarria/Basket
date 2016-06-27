@@ -1,4 +1,5 @@
 import {Component, ElementRef ,AfterViewInit, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 import {ShoppingListService} from './services/shoppingList.Service';
 import {List} from './services/list';
 import {MDL} from './materialDesignUpgradeElement';
@@ -27,7 +28,7 @@ declare var componentHandler: any;
           </ul>
         </div>
         <div class="mdl-card__actions mdl-card--border">
-          <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+          <a (click)="onSelectList(list)"class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
             View all items
           </a>
         </div>
@@ -41,17 +42,23 @@ declare var componentHandler: any;
 export class MyLists implements AfterViewInit,OnInit{
   private lists:List[];
   public add_list = false;
-  
-  constructor(private _shoppingListService: ShoppingListService){}
+
+  constructor(private router: Router, private _shoppingListService: ShoppingListService){}
 
   ngOnInit(){
     this._shoppingListService.getLists().subscribe(lists => {
       this.lists = lists;
     },error =>console.log('done'));
   }
+
+  onSelectList(list:List){
+    this.router.navigate(['/list', list.id]);
+  }
+
   onNew() {
     this.add_list = true;
-  };
+  }
+
   onSave(item:any){
     if (!item) {
       this.add_list = false;
@@ -67,7 +74,8 @@ export class MyLists implements AfterViewInit,OnInit{
   };
   onCancel(item:any){
     this.add_list = item;
-  }
+  };
+
   ngAfterViewInit() {
       //componentHandler.upgradeAllRegistered();
   }
