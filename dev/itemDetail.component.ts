@@ -5,7 +5,7 @@ declare var componentHandler: any;
 @Component({
     selector: 'item-detail',
     template: `
-      <span>{{item}}</span>
+      <span>{{item.name}}</span>
       <button (click)='salvar(item)'></button>
     `
 })
@@ -19,7 +19,7 @@ export class ItemDetail implements AfterViewInit  {
     }
 
     salvar(item:any){
-      item = 'asdf'
+      item = item.name;
       this.onSave.emit(item);
     }
 }

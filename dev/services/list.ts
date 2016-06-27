@@ -1,4 +1,4 @@
 export interface List {
-    id?: string;
-    name: string;
+    id?: any;
+    name: any;
 }
