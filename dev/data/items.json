@@ -1,81 +1,30 @@
-[
-	{
-		"category":"Natersports",
-		"description":"A boat for one person",
-		"name":"Kayak",
-		"price":275,
-		"status":true,
-		"id":"053f70919155f8fc"
-	},
+{
+	"name":"Pet List",
+	"id":"01",
+	"image":"url('../assets/images/dog.png')",
+	"items":[
+		{
+			"category":"Natersports",
+			"description":"A boat for one person",
+			"name":"Kayak",
+			"price":275,
+			"id":"01"
+		},
 
-	{
-		"category":"watersports",
-		"description":"Protective and fashionable",
-		"name":"Lifejacket",
-		"price":48.95,
-		"status":false,
-		"id":"3d31d81b218c98ef"
-	},
+		{
+			"category":"watersports",
+			"description":"Protective and fashionable",
+			"name":"Lifejacket",
+			"price":48.95,
+			"id":"02"
+		},
 
-	{
-		"category":"Soccer",
-		"description":"FIFA-approved size and weight",
-		"name":"Soccer Ball",
-		"price":19.5,
-		"status":false,
-		"id":"437615faf1d38815"
-	},
-
-	{
-		"category":"Soccer",
-		"description":"Give your playing field a professional touch",
-		"name":"Corner Flags",
-		"price":34.95,
-		"status":false,
-		"id":"93c9cc08ac2f28d4"
-	},
-
-	{
-		"category":"Soccer",
-		"description":"Flat-packed 35,000-seat stadium",
-		"name":"Stadium",
-		"price":79500,
-		"status":false,
-		"id":"ad4e64b38baaO88f"
-	},
-
-	{
-		"category":"Chess",
-		"description":"Improve your brain efficiency by 75%",
-		"name":"Thinking Cap",
-		"price":16,
-		"status":false,
-		"id":"b9e8855c1ecc0b63"
-	},
-
-	{
-		"category":"Chess",
-		"description":"Secretly give your opponent a disadvantage",
-		"name":"Unsteady Chair",
-		"price":29.95,
-		"status":false,
-		"id":"32c2355f93617bbd"
-	},
-
-	{
-		"category":"Chess",
-		"description":"A fun game for the family",
-		"name":"Human Chess Board",
-		"price":75,
-		"status":false,
-		"id":"5241512218f73a26"
-	},
-	{
-		"category":"Chess",
-		"description":"Gold-plated, diamond-studded King",
-		"name":"Bling-Bling King",
-		"price":1200,
-		"status":false,
-		"id":"59166228d70f8858"
-	}
-]
+		{
+			"category":"Soccer",
+			"description":"FIFA-approved size and weight",
+			"name":"Soccer Ball",
+			"price":19.5,
+			"id":"03"
+		}
+	]
+}

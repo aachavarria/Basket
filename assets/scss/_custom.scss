@@ -12,3 +12,12 @@
 .is-checked {
   text-decoration: line-through;
 }
+
+.default-label {
+  .mdl-textfield__label {
+    color: rgb(33,150,243);
+    font-size: 12px;
+    top: 4px;
+    visibility: visible;
+  }
+}

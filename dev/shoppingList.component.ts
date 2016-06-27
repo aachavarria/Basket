@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import {ShoppingListService} from './services/shoppingList.service';
+import {List} from './services/list';
 import {Item} from './services/item';
 import {MDL} from './materialDesignUpgradeElement';
 import {ItemDetail} from './itemDetail.component';
@@ -9,26 +11,25 @@ import {ItemDetail} from './itemDetail.component';
     template: `
     <div class="sp-top-section">
         <div class="mdl-textfield mdl-js-textfield">
-          <input class="mdl-textfield__input" type="text" id="sample1">
-          <label class="mdl-textfield__label" for="sample1">List Name</label>
+          <input class="mdl-textfield__input" type="text">
+          <label class="mdl-textfield__label" for="sample1">{{list.name}}</label>
         </div>
         <div class="list-actions">
         <button class="mdl-button mdl-js-button mdl-button--icon">
-          <i (click)="onDelete(item)" class="material-icons">add</i>
+          <i (click)="onAddItem()" class="material-icons">add</i>
         </button>
           <button class="mdl-button mdl-js-button mdl-button--icon">
-            <i (click)="onDelete(item)" class="material-icons">share</i>
+            <i (click)="onShareList(list)" class="material-icons">share</i>
           </button>
           <button class="mdl-button mdl-js-button mdl-button--icon">
-            <i (click)="onDelete(item)" class="material-icons">delete</i>
+            <i (click)="onDeleteList(list)" class="material-icons">delete</i>
           </button>
         </div>
     </div>
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--12-col">
-        <div id="modalBack" *ngIf="edited==true"></div>
-        <ul class="list-items mdl-list">
-          <li mdl class="mdl-list__item mdl-list__item--two-line" *ngFor="let item of items; let i=index">
+        <ul class="list-items mdl-list" *ngIf="list.items">
+          <li mdl class="mdl-list__item mdl-list__item--two-line" *ngFor="let item of list.items; let i=index">
             <span class="mdl-list__item-primary-content">
                 <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
                   <input type="checkbox" [ngModel]="item.status" class="mdl-checkbox__input" (change)="item.status=!item.status">
@@ -48,48 +49,57 @@ import {ItemDetail} from './itemDetail.component';
         </ul>
       </div>
     </div>
-    <div class="modal-list" *ngIf="edited==true">
-      <h4 class="mdl-dialog__title">Edit?</h4>
-      <div class="mdl-dialog__content">
-        <p>
-          <input type="text" [ngModel]="tempName"/>
-        </p>
-      </div>
-      <div class="mdl-dialog__actions">
-        <button type="button" class="mdl-button" (click)="onSave()">Agree</button>
-        <button type="button" class="mdl-button close" (click)="onCancel()">Disagree</button>
-      </div>
-    </div>
-    <item-detail [item]='edit_item' (onSave)='onSave($event)'></item-detail>
     `,
     providers: [ShoppingListService],
     directives: [MDL,ItemDetail]
 })
-export class ShoppingListComponent implements OnInit{
-  private items:Item[];
-  public edited = false;
-  public tempName = '';
-  public edit_item='asd';
+export class ShoppingListComponent implements OnInit {
+  private list:List = <List>{};
+  private sub: any;
 
-  constructor(private _shoppingListService: ShoppingListService){}
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private _shoppingListService: ShoppingListService){}
 
-  onEdit(item:any) {
-    console.log(item);
-    this.edit_item = item;
-    // console.log(item);
-    // this.edited = true;
-    // this.tempName = item.name;
+
+  onShareList(list:List) {
+
   };
-  onSave(item:any){
-    console.log(item);
-    //this.edited = false;
+
+  onDeleteList(list:List) {
+    this.router.navigate(['/']);
   };
-  onCancel(){
-    this.edited = false;
+
+  onAddItem() {
+
   };
-  ngOnInit(){
-    this._shoppingListService.getItems().subscribe(items => {
-      this.items = items;
-    });
+
+  onSaveItem(item:Item){
+
+  };
+
+  onEdit(item:Item) {
+    this.router.navigate(['/list', this.list.id,'/item',item.id]);
+  };
+
+  onDelete(item:Item) {
+    var index = this.list.items.indexOf(item);
+    if (index >=0) {
+      this.list.items.splice(index,1);
+    }
   }
+
+  ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+       let listId = +params['lid']; // (+) converts string 'id' to a number
+         this._shoppingListService.getItems(listId).subscribe(list => {
+           this.list = list;
+         });
+     });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
 }
