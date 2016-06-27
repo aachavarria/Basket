@@ -5,6 +5,8 @@ import {List} from './services/list';
 import {Item} from './services/item';
 import {MDL} from './materialDesignUpgradeElement';
 import {ItemDetail} from './itemDetail.component';
+import {modalComponent} from './modal.component';
+
 
 @Component({
     selector: 'shopping-list',
@@ -49,13 +51,17 @@ import {ItemDetail} from './itemDetail.component';
         </ul>
       </div>
     </div>
+    <modal-edit [item]='add_item' (onSave)='onSave($event)' (onCancel)='onCancel($event)'>
+      <h4 class="mdl-dialog__title">New Item</h4>
+    </modal-edit>
     `,
     providers: [ShoppingListService],
-    directives: [MDL,ItemDetail]
+    directives: [MDL,ItemDetail,modalComponent]
 })
 export class ShoppingListComponent implements OnInit {
   private list:List = <List>{};
   private sub: any;
+  public add_item = false;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -69,9 +75,23 @@ export class ShoppingListComponent implements OnInit {
   onDeleteList(list:List) {
     this.router.navigate(['/']);
   };
-
-  onAddItem() {
-
+  onAddItem(){
+    this.add_item = true;
+  }
+  onSave(item:any){
+    if (!item) {
+      this.add_item = false;
+    } else {
+      var newList = {
+        "name":item,
+        "id":this.list.items.length
+      };
+      this.list.items.push(newList);
+      this.add_item = false;
+    }
+  };
+  onCancel(item:any){
+    this.add_item = item;
   };
 
   onSaveItem(item:Item){

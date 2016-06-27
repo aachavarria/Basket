@@ -34,7 +34,9 @@ declare var componentHandler: any;
         </div>
       </div>
     </div>
-    <modal-edit [item]='add_list' (onSave)='onSave($event)' (onCancel)='onCancel($event)'></modal-edit>
+    <modal-edit [item]='add_list' (onSave)='onSave($event)' (onCancel)='onCancel($event)'>
+      <h4 class="mdl-dialog__title">New List</h4>
+    </modal-edit>
     `,
     providers: [ShoppingListService],
     directives: [MDL,modalComponent]

@@ -5,7 +5,7 @@ import {MDL} from './materialDesignUpgradeElement';
     template: `
     <div id="modalBack" *ngIf="item==true"></div>
     <div class="modal-list" *ngIf="item==true">
-      <h4 class="mdl-dialog__title">New List</h4>
+      <ng-content></ng-content>
       <div class="mdl-dialog__content">
         <form mdl action="#">
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -15,7 +15,7 @@ import {MDL} from './materialDesignUpgradeElement';
         </form>
       </div>
       <div class="mdl-dialog__actions">
-        <button type="button" class="mdl-button" (click)="onAddList()">Save</button>
+        <button type="button" class="mdl-button" (click)="onAdd()">Save</button>
         <button type="button" class="mdl-button close" (click)="onCancelModal()">Cancel</button>
       </div>
     </div>
@@ -33,7 +33,7 @@ export class modalComponent implements AfterViewInit  {
         //componentHandler.upgradeAllRegistered();
     }
 
-    onAddList(item:any){
+    onAdd(item:any){
       this.onSave.emit(this.tempName);
       this.tempName = '';
     }
