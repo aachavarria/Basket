@@ -53,13 +53,17 @@ export class MyLists implements AfterViewInit,OnInit{
     this.add_list = true;
   };
   onSave(item:any){
-    var newList = {
-      "name":item,
-      "id":this.lists.length,
-      "image":"url('https://placeholdit.imgix.net/~text?txtsize=19&txt=155%C3%97133&w=200&h=200')"
-    };
-    this.lists.push(newList);
-    this.add_list = false;
+    if (!item) {
+      this.add_list = false;
+    } else {
+      var newList = {
+        "name":item,
+        "id":this.lists.length,
+        "image":"url('https://placeholdit.imgix.net/~text?txtsize=19&txt=155%C3%97133&w=200&h=200')"
+      };
+      this.lists.push(newList);
+      this.add_list = false;
+    }
   };
   onCancel(item:any){
     this.add_list = item;

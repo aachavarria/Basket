@@ -19,7 +19,6 @@ import {MDL} from './materialDesignUpgradeElement';
         <button type="button" class="mdl-button close" (click)="onCancelModal()">Cancel</button>
       </div>
     </div>
-    <button (click)='onAddList(item)'></button>
     `,
     directives: [MDL]
 })
