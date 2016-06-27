@@ -54,3 +54,22 @@
     opacity: 0.8;
     left: 0;
 }
+.mdl-card__supporting-text
+{
+  min-height: 105px;
+}
+.new-list-box
+{
+  background: url("../assets/images/more.png") no-repeat;
+  width: 41%;
+  top: 0;
+  height: 37%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+  left: 29%;
+  transform: translatey(76%);
+  background-size:contain;
+  background-position:center;
+}

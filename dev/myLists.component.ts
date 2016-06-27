@@ -2,6 +2,8 @@ import {Component, ElementRef ,AfterViewInit, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import {ShoppingListService} from './services/shoppingList.Service';
 import {List} from './services/list';
+import {MDL} from './materialDesignUpgradeElement';
+import {modalComponent} from './modal.component';
 
 declare var componentHandler: any;
 
@@ -9,6 +11,9 @@ declare var componentHandler: any;
     selector: 'lists',
     template: `
     <div class="mdl-grid">
+      <div class="list-card mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col">
+        <div class="new-list-box" (click)="onNew()"></div>
+      </div>
       <div class="list-card mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col" *ngFor="let list of lists; let i=index">
         <div class="mdl-card__title mdl-card--expand" [ngStyle]="{'background': list.image}">
           <h2 class="mdl-card__title-text">{{list.name}}</h2>
@@ -29,11 +34,14 @@ declare var componentHandler: any;
         </div>
       </div>
     </div>
+    <modal-edit [item]='add_list' (onSave)='onSave($event)' (onCancel)='onCancel($event)'></modal-edit>
     `,
-    providers: [ShoppingListService]
+    providers: [ShoppingListService],
+    directives: [MDL,modalComponent]
 })
 export class MyLists implements AfterViewInit,OnInit{
   private lists:List[];
+  public add_list = false;
 
   constructor(private router: Router, private _shoppingListService: ShoppingListService){}
 
@@ -45,6 +53,24 @@ export class MyLists implements AfterViewInit,OnInit{
 
   onSelectList(list:List){
     this.router.navigate(['/list', list.id]);
+  }
+
+  onNew() {
+    this.add_list = true;
+  }
+
+  onSave(item:any){
+    var newList = {
+      "name":item,
+      "id":this.lists.length,
+      "image":"url('https://placeholdit.imgix.net/~text?txtsize=19&txt=155%C3%97133&w=200&h=200')"
+    };
+    this.lists.push(newList);
+    this.add_list = false;
+  }
+
+  onCancel(item:any){
+    this.add_list = item;
   }
 
   ngAfterViewInit() {
