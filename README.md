@@ -8,9 +8,7 @@ Node.js and NPM
 ```
 npm install
 ```
-```
-npm run typings install
-```
+
 
 1:Development Mode
 ```
