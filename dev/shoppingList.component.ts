@@ -84,7 +84,7 @@ export class ShoppingListComponent implements OnInit {
     } else {
       var newList = {
         "name":item,
-        "id":this.list.items.length
+        "id":this.list.items.length+1
       };
       this.list.items.push(newList);
       this.add_item = false;
@@ -112,10 +112,11 @@ export class ShoppingListComponent implements OnInit {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
        let listId = +params['lid']; // (+) converts string 'id' to a number
-         this._shoppingListService.getItems(listId).subscribe(list => {
-           this.list = list;
-         });
+         this._shoppingListService.getLists().subscribe(lists => {
+            this.list = lists[listId-1];
+          });
      });
+
   }
 
   ngOnDestroy() {

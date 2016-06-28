@@ -54,6 +54,7 @@ export class MyLists implements AfterViewInit,OnInit{
   }
 
   onSelectList(list:List){
+      console.log(list);
     this.router.navigate(['/list', list.id]);
   }
 
@@ -67,11 +68,12 @@ export class MyLists implements AfterViewInit,OnInit{
     } else {
       var newList = {
         "name":item,
-        "id":this.lists.length,
+        "id":this.lists.length + 1,
         "image":"url('https://placeholdit.imgix.net/~text?txtsize=19&txt=155%C3%97133&w=200&h=200')"
       };
       this.lists.push(newList);
       this.add_list = false;
+      console.log(this.lists);
     }
   };
   onCancel(item:any){

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute} from '@angular/router';
 import { Item } from './services/item';
 import { MDL } from './materialDesignUpgradeElement';
 import { ShoppingListService } from './services/shoppingList.service';
+import {List} from './services/list';
 
 declare var componentHandler: any;
 
@@ -39,6 +40,7 @@ export class ItemDetail implements OnInit {
     private sub: any;
     private listId:any;
     private itemId:any;
+    private list:List = <List>{};
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
@@ -48,8 +50,8 @@ export class ItemDetail implements OnInit {
       this.sub = this.route.params.subscribe(params => {
          this.itemId = +params['iid']; // (+) converts string 'id' to a number
          this.listId = +params['lid'];
-         this._shoppingListService.getItem(this.listId,this.itemId).subscribe(item => {
-           this.item = item;
+         this._shoppingListService.getLists().subscribe(lists =>  {
+           this.item = lists[this.listId-1].items[this.itemId-1];
          });
        });
     }
