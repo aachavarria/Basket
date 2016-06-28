@@ -18,8 +18,7 @@
     text-align: center;
   }
 }
-.modal-list
-{
+.modal-list {
     position: absolute;
     left: 0px;
     right: 0px;
@@ -43,8 +42,8 @@
     right: 0;
     bottom: 0;
 }
-#modalBack
-{
+
+#modalBack {
     position: absolute;
     top: 0;
     width: 100%;
@@ -54,12 +53,12 @@
     opacity: 0.8;
     left: 0;
 }
-.mdl-card__supporting-text
-{
+
+.mdl-card__supporting-text {
   min-height: 105px;
 }
-.new-list-box
-{
+
+.new-list-box {
   background: url("../assets/images/more.png") no-repeat;
   width: 41%;
   top: 0;
