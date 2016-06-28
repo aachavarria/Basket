@@ -4,7 +4,9 @@
 
 ## Prerequisites
 
-Node.js and NPM
+Node.js and NPM  
+When the install is finish it is going to install the typings  
+if it is not executing automatically you can install it with 'npm run typings install'
 ```
 npm install
 ```
